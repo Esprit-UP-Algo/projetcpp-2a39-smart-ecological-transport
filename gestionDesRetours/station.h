@@ -1,6 +1,5 @@
 #ifndef STATION_H
 #define STATION_H
-
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
@@ -8,10 +7,10 @@
 
 class station
 {
-    QString ref,point,type_charg,temps;
+    QString ref,point,type_charg,temps,phone;
 public:
     station(){}
-    station(QString,QString,QString,QString);
+    station(QString,QString,QString,QString,QString);
     /*-----------------------------------*/
     QString getRef(){return ref;}
     QString getPoint(){return point;}
@@ -27,5 +26,10 @@ public:
     bool ajouter();
     QSqlQueryModel * afficher();
     bool supprimer(QString);
+    bool modifier(QString ref);
+    QSqlQuery afficher(QString ref);
+    /*-----------------------------*/
+    QSqlQueryModel * trierStation(QString );
+    QSqlQueryModel * rechercherStation(QString);
 };
 #endif // STATION_H

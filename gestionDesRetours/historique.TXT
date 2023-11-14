@@ -1,0 +1,129 @@
+
+ reference: ref, piont de recharge: point, type de chargeur: 2, temp de recharge: temps
+un nouveau piont de charge a ete ajouter le Saturday 11 November 2023 16:56:06.923
+
+*****************************************Update********************************
+ Referance: ref, piont de charge: point, type de chargeur: 2, temp de recharge: temps
+ Referance: te, piont de charge: 2te, type de chargeur: fd, temp de recharge: fs
+Cet point de charge a été modifié le Saturday 11 November 2023 17:03:09.625
+*****************************************Update********************************
+
+ reference: fefe, piont de recharge: fef, type de chargeur: ff, temp de recharge: fff
+un nouveau piont de charge a ete ajouter le Saturday 11 November 2023 21:45:10.706
+
+ reference: testestt, piont de recharge: wattt, type de chargeur: ettt, temp de recharge: test
+un nouveau piont de charge a ete ajouter le Saturday 11 November 2023 22:33:20.452
+
+ reference: abdo, piont de recharge: abdoA, type de chargeur: abdo, temp de recharge: abdo
+un nouveau piont de charge a ete ajouter le Saturday 11 November 2023 23:18:29.967
+
+ reference: testestt, piont de recharge: wattt, type de chargeur: ettt, temp de recharge: test
+un nouveau piont de charge a ete ajouter le Saturday 11 November 2023 23:21:21.815
+
+ reference: , Point de charge: , Type de chargeur: , temp de recharge: 
+Cet point de recharge a été supprimé le Saturday 11 November 2023 23:31:42.380
+
+ reference: , Point de charge: , Type de chargeur: , temp de recharge: 
+Cet point de recharge a été supprimé le Saturday 11 November 2023 23:33:06.932
+
+ reference: abdo, piont de recharge: abdoA, type de chargeur: abdo, temp de recharge: abbbbb
+un nouveau piont de charge a ete ajouter le Saturday 11 November 2023 23:33:19.163
+
+ reference: abdo, Point de charge: abdoA, Type de chargeur: abdo, temp de recharge: abbbbb
+Cet point de recharge a été supprimé le Saturday 11 November 2023 23:34:54.489
+
+ reference: abdo, piont de recharge: abdoA, type de chargeur: abdo, temp de recharge: abbbbb
+un nouveau piont de charge a ete ajouter le Saturday 11 November 2023 23:35:15.608
+
+*****************************************Update********************************
+ Referance: , piont de charge: , type de chargeur: , temp de recharge: 
+ Referance: test, piont de charge: test, type de chargeur: test, temp de recharge: test
+Cet point de charge a été modifié le Saturday 11 November 2023 23:38:33.158
+*****************************************Update********************************
+
+*****************************************Update********************************
+ Referance: abdo, piont de charge: abdoA, type de chargeur: abdo, temp de recharge: abbbbb
+ Referance: abdo, piont de charge: test, type de chargeur: twsttw, temp de recharge: twst
+Cet point de charge a été modifié le Saturday 11 November 2023 23:42:05.119
+*****************************************Update********************************
+
+*****************************************Update********************************
+ Referance: , piont de charge: , type de chargeur: , temp de recharge: , phone number: 
+ Referance: , piont de charge: , type de chargeur: , temp de recharge: , phone number: 
+Cet point de charge a été modifié le Monday 13 November 2023 18:21:35.436
+*****************************************Update********************************
+
+ reference: test, piont de recharge: test, type de chargeur: twst, temp de recharge: twst, phone number: 52940699
+un nouveau piont de charge a ete ajouter le Monday 13 November 2023 18:22:06.579
+
+ reference: ref, piont de recharge: piiont, type de chargeur: type, temp de recharge: temp, phone number: 52940699
+un nouveau piont de charge a ete ajouter le Monday 13 November 2023 18:22:52.455
+
+ reference: ref, piont de recharge: , type de chargeur: rw, temp de recharge: , phone number: rw
+un nouveau piont de charge a ete ajouter le Monday 13 November 2023 18:24:52.359
+
+ reference: test, piont de recharge: twastr, type de chargeur: twatr, temp de recharge: twat, phone number: twa
+un nouveau piont de charge a ete ajouter le Monday 13 November 2023 18:26:53.769
+
+ reference: test, Point de charge: test, Type de chargeur: twst, temp de recharge: 52940699, phone number: 
+Cet point de recharge a été supprimé le Monday 13 November 2023 18:27:28.691
+
+ reference: ref, Point de charge: piiont, Type de chargeur: type, temp de recharge: 52940699, phone number: 
+Cet point de recharge a été supprimé le Monday 13 November 2023 18:27:32.896
+
+*****************************************Update********************************
+ Referance: abdo, piont de charge: test, type de chargeur: twsttw, temp de recharge: twst, phone number: 
+ Referance: abdo, piont de charge: test, type de chargeur: twsttw, temp de recharge: twst, phone number: 52940699
+Cet point de charge a été modifié le Monday 13 November 2023 18:27:45.960
+*****************************************Update********************************
+
+ reference: testtt, piont de recharge: teet, type de chargeur: tete, temp de recharge: tetet, phone number: 5294069
+un nouveau piont de charge a ete ajouter le Monday 13 November 2023 18:39:04.036
+
+ reference: rerere, piont de recharge: tetet, type de chargeur: eter, temp de recharge: tdette, phone number: 52940699
+un nouveau piont de charge a ete ajouter le Monday 13 November 2023 18:39:59.827
+
+ reference: testtt, Point de charge: teet, Type de chargeur: tete, temp de recharge: tetet, phone number: 
+Cet point de recharge a été supprimé le Monday 13 November 2023 18:40:04.461
+
+*****************************************Update********************************
+ Referance: rerere, piont de charge: tetet, type de chargeur: eter, temp de recharge: tdette, phone number: 52940699
+ Referance: rerere, piont de charge: tetet, type de chargeur: eter, temp de recharge: tdette, phone number: 55601092
+Cet point de charge a été modifié le Monday 13 November 2023 18:40:22.645
+*****************************************Update********************************
+
+*****************************************Update********************************
+ Referance: rerere, piont de charge: tetet, type de chargeur: eter, temp de recharge: tdette, phone number: 55601092
+ Referance: rerere, piont de charge: tetet, type de chargeur: eter, temp de recharge: tdette, phone number: 26663243
+Cet point de charge a été modifié le Monday 13 November 2023 18:40:36.359
+*****************************************Update********************************
+
+ reference: eeeee, piont de recharge: eeeeee, type de chargeur: eeeee, temp de recharge: eeee, phone number: 96726127
+un nouveau piont de charge a ete ajouter le Monday 13 November 2023 20:06:55.986
+
+ reference: referance, piont de recharge: point, type de chargeur: type, temp de recharge: temp, phone number: 50940699
+un nouveau piont de charge a ete ajouter le Monday 13 November 2023 20:40:29.850
+
+ reference: eeeee, Point de charge: eeeeee, Type de chargeur: eeeee, temp de recharge: eeee, phone number: 
+Cet point de recharge a été supprimé le Monday 13 November 2023 20:58:36.182
+
+ reference: ref, piont de recharge: ref, type de chargeur: ref, temp de recharge: 15, phone number: 99762864
+un nouveau piont de charge a ete ajouter le lundi 13 novembre 2023 23:28:00.736
+
+*****************************************Update********************************
+ Referance: reeed, piont de charge: tett, type de chargeur: tetet, temp de recharge: 14, phone number: 14252
+ Referance: reeed, piont de charge: tett, type de chargeur: tetet, temp de recharge: 14, phone number: 55555555
+Cet point de charge a été modifié le lundi 13 novembre 2023 23:28:49.875
+*****************************************Update********************************
+
+ reference: reeed, Point de charge: tett, Type de chargeur: tetet, temp de recharge: 14, phone number: 
+Cet point de recharge a été supprimé le lundi 13 novembre 2023 23:29:00.185
+
+*****************************************Update********************************
+ Referance: ref, piont de charge: ref, type de chargeur: ref, temp de recharge: 15, phone number: 99762864
+ Referance: ref, piont de charge: point, type de chargeur: type, temp de recharge: 125, phone number: 22222222
+Cet point de charge a été modifié le mardi 14 novembre 2023 09:09:53.345
+*****************************************Update********************************
+
+ reference: ref2, piont de recharge: point, type de chargeur: type, temp de recharge: 125, phone number: 11111111
+un nouveau piont de charge a ete ajouter le mardi 14 novembre 2023 09:10:27.458
