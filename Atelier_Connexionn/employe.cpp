@@ -64,3 +64,9 @@ Employe::Employe(int id, int salaire,  QDate datedebut, QString nom, QString pre
             return query.exec();
     }
 
+    QSqlQueryModel * Employe::recherche(QString ar)
+    {
+        QSqlQueryModel * model = new QSqlQueryModel();
+        model->setQuery("Select * from Employe where ID like '%"+ar+"%' or PRENOM like '%"+ar+"%' or NOM like '%"+ar+"%' or SALAIRE like '%"+ar+"%' or DATEDEBUT like '%"+ar+"%' or POSTE like '%"+ar+"%' ");
+        return model;
+    }

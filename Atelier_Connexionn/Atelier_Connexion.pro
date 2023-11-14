@@ -5,6 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui sql
+QT += widgets printsupport
+QT += core gui charts
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,19 +28,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    conge.cpp \
     employe.cpp \
+    login.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    stats.cpp
 
 HEADERS += \
+    conge.h \
     employe.h \
+    login.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    stats.h
 
 FORMS += \
         login.ui \
-        mainwindow.ui
+        mainwindow.ui \
+        stats.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
