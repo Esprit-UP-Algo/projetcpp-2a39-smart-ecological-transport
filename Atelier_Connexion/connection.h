@@ -4,6 +4,7 @@
 #include <QSqlError>
 #include <QSqlQuery>
 #include<QSqlDatabase>
+#include<QSettings>
 
 class Connection
 {
@@ -12,6 +13,7 @@ public:
     Connection();
     bool createconnect();
     void closeconnect();
+
 };
 
 #endif // CONNECTION_H

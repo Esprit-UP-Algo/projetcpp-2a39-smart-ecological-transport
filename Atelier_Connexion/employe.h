@@ -3,6 +3,10 @@
 #include <QSqlQuery>
 #include<QSqlQueryModel>
 #include <QDate>
+#include<QPieSeries>
+#include<QPieSlice>
+#include<QtCharts>
+
 class Employe
 {
 public:
@@ -26,6 +30,10 @@ public:
     void setposte(QString);
     bool ajouter();
     bool supprimer(int);
+
+
+ QSqlQueryModel* trier_nom();
+
     QSqlQueryModel * afficher();
     bool modifier();
     QSqlQueryModel *recherche (QString);

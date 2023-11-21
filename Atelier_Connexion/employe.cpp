@@ -64,3 +64,27 @@ Employe::Employe(int id, int salaire,  QDate datedebut, QString nom, QString pre
             return query.exec();
     }
 
+    QSqlQueryModel * Employe::recherche(QString ar)
+    {
+        QSqlQueryModel * model = new QSqlQueryModel();
+        model->setQuery("Select * from Employe where ID like '%"+ar+"%' or PRENOM like '%"+ar+"%' or NOM like '%"+ar+"%' or SALAIRE like '%"+ar+"%' or DATEDEBUT like '%"+ar+"%' or POSTE like '%"+ar+"%' ");
+        return model;
+    }
+
+    QSqlQueryModel* Employe::trier_nom()
+    {
+
+            QSqlQueryModel * model=new QSqlQueryModel();
+
+            model->setQuery("select * from EMPLOYEE order by nom ");
+
+            model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
+            model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM"));
+            model->setHeaderData(2,Qt::Horizontal,QObject::tr("PRENOM"));
+            model->setHeaderData(3,Qt::Horizontal,QObject::tr("SALAIRE"));
+            model->setHeaderData(4,Qt::Horizontal,QObject::tr("DATEDEBUT"));
+            model->setHeaderData(5,Qt::Horizontal,QObject::tr("POSTE"));
+
+
+        return model;
+    }

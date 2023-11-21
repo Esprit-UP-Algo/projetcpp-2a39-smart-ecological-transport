@@ -5,6 +5,10 @@
 #-------------------------------------------------
 
 QT       += core gui sql
+QT += widgets printsupport
+QT += core gui charts
+QT += serialport
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,15 +29,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    Login.cpp \
+    arduino.cpp \
+    conge.cpp \
     employe.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    pdf.cpp
 
 HEADERS += \
+    Login.h \
+    arduino.h \
+    conge.h \
     employe.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    pdf.h
 
 FORMS += \
         login.ui \
