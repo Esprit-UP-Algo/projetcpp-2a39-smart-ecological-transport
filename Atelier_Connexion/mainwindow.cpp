@@ -1,37 +1,48 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include"pdf.h"
-
 #include"arduino.h"
+#include <QtCharts>
+#include <QChartView>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-   arduino(new Arduino(this))
-{ // Initialize Arduino instance
-         ui->setupUi(this);
+    ui(new Ui::MainWindow)
 
-         if (arduino->connectToArduino()) {
-             qDebug() << "Connected to Arduino!";
-             // Perform fingerprint operations as needed
-             connect(arduino, &Arduino::fingerprintEnrolled, this, &MainWindow::handleEnrollmentResult);
-             connect(arduino, &Arduino::fingerprintVerified, this, &MainWindow::handleVerificationResult);
-         } else {
-             qDebug() << "Failed to connect to Arduino!";
-         }
+{
+         ui->setupUi(this);
 
 
      ui->lineEdit_2->setValidator(new QRegExpValidator (QRegExp ("[a-zA-Z]+")));
       ui->lineEdit_3->setValidator(new QRegExpValidator (QRegExp ("[a-zA-Z]+")));
      ui->lineEdit->setValidator(new QIntValidator (0,99999999,this));
+
      ui->lineEdit_4->setValidator(new QIntValidator);
-     ui->lineEdit->setValidator(new QIntValidator (0,99999999,this));
+
      ui->lineEdit_4->setValidator(new QIntValidator);
      ui->lineEdit_16->setValidator(new QIntValidator);
      ui->lineEdit_16->setValidator(new QIntValidator (0,99999999,this));
+     ui->tri->addItem("par NOM");
+     ui->tri->addItem("par PRENOM");
+     ui->tri->addItem("par SALAIRE");
+     ui->tri->addItem("par POSTE");
+     ui->tri->addItem("par ID");
+     int ret=A.connect_arduino(); // lancer la connexion à arduino
+     switch(ret){
+     case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+         break;
+     case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+        break;
+     case(-1):qDebug() << "arduino is not available";
+     }
+      QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+      //le slot update_label suite à la reception du signal readyRead (reception des données).
+
 
 
 show();
+stat();
 
 ui->tableView->setModel(Etmp.afficher());
 
@@ -40,39 +51,30 @@ ui->tableView->setModel(Etmp.afficher());
 MainWindow::~MainWindow()
 {
     delete ui;
-     delete arduino;
+
 }
 
 
 
 void MainWindow::on_pushButton_ajouter_clicked()
 {
-    QString IDText = ui->lineEdit->text();
+    QString ID= ui->lineEdit->text();
     QString salaireText = ui->lineEdit_4->text();
     QString nom = ui->lineEdit_2->text();
     QString prenom = ui->lineEdit_3->text();
-   QString poste = ui->POSTE_p->currentText();
+   QString poste = ui->poste_p->currentText();
     QDate datedebut = ui->dateEdit->date();
 
     // Check if any required fields are empty
-        if (IDText.isEmpty() || salaireText.isEmpty() || nom.isEmpty() || prenom.isEmpty() || poste.isEmpty()) {
+        if (ID.isEmpty() || salaireText.isEmpty() || nom.isEmpty() || prenom.isEmpty() || poste.isEmpty()) {
             QMessageBox::critical(nullptr, QObject::tr("Erreur"),
                                   QObject::tr("Veuillez remplir tous les champs obligatoires."), QMessageBox::Ok);
             return;
         }
-        if (IDText.length() != 8) {
-            QMessageBox::critical(nullptr, tr("Error"), tr("L'ID doit contenir exactement 8 caractères."), QMessageBox::Ok);
-              return;
-        }
+
 
         // Validate the format of numeric input fields
         bool ok;
-        int ID = IDText.toInt(&ok);
-        if (!ok) {
-            QMessageBox::critical(nullptr, QObject::tr("Erreur"),
-                                  QObject::tr("ID Incorrect."), QMessageBox::Ok);
-            return;
-        }
 
         int salaire = salaireText.toInt(&ok);
         if (!ok) {
@@ -97,7 +99,7 @@ void MainWindow::on_pushButton_ajouter_clicked()
         }
     }
 
-bool recordExists(int ID) {
+bool recordExists(QString ID) {
 
     QSqlQuery query;
     query.prepare("SELECT COUNT(*) FROM EMPLOYE WHERE id = :id");
@@ -112,29 +114,15 @@ bool recordExists(int ID) {
 
 void MainWindow::on_pushButton_supprimer_clicked()
 {
-    QString idText = ui->lineEdit_16->text();
+    QString id= ui->lineEdit_16->text();
 
     // Check if the ID field is empty
-    if (idText.isEmpty()) {
+    if (id.isEmpty()) {
         QMessageBox::critical(nullptr, tr("Error"), tr("Veuillez entrer un ID."), QMessageBox::Ok);
         return;
     }
 
-    // Validate the format of the ID field
-    bool ok;
-    int id = idText.toInt(&ok);
-    if (!ok) {
-        QMessageBox::critical(nullptr, tr("Error"), tr("Veuillez entrer un ID valide."), QMessageBox::Ok);
-        return;
-    }
-
-
-    if (idText.length() != 8) {
-        QMessageBox::critical(nullptr, tr("Error"), tr("L'ID doit contenir exactement 8 caractères."), QMessageBox::Ok);
-          return;
-    }
-
-    // Check if the ID exists before deletion
+ // Check if the ID exists before deletion
     bool idExists = recordExists(id);
     if (!idExists) {
         QMessageBox::critical(nullptr, tr("Error"), tr("L'ID spécifié n'existe pas."), QMessageBox::Ok);
@@ -155,7 +143,7 @@ void MainWindow::on_pushButton_supprimer_clicked()
 }
 void MainWindow::on_pushButton_modifier_clicked()
 {
-    QString IDText = ui->lineEdit_11->text();
+    QString ID = ui->lineEdit_11->text();
     QString salaireText = ui->lineEdit_14->text();
     QString nom = ui->lineEdit_12->text();
     QString prenom = ui->lineEdit_13->text();
@@ -164,20 +152,20 @@ void MainWindow::on_pushButton_modifier_clicked()
 
 
 
-        if (IDText.isEmpty() || salaireText.isEmpty() || nom.isEmpty() || prenom.isEmpty() || poste.isEmpty()) {
+        if (ID.isEmpty() || salaireText.isEmpty() || nom.isEmpty() || prenom.isEmpty() || poste.isEmpty()) {
             QMessageBox::critical(nullptr, tr("Error"), tr("Please fill in all the required fields."), QMessageBox::Ok);
         return;}
 
 
         bool ok;
-        int ID = IDText.toInt(&ok);
+
          salaire = salaireText.toInt(&ok);
         if (!ok) {
             QMessageBox::critical(nullptr, tr("Error"), tr("Invalid value for ID."), QMessageBox::Ok);
              return;
 
         }
-        if (IDText.length() > 8) {
+        if (ID.length() > 8) {
               QMessageBox::critical(nullptr, tr("Error"), tr("ID should not exceed 8 characters."), QMessageBox::Ok);
               return;
           }
@@ -230,7 +218,8 @@ void MainWindow::on_pushButton_3_clicked() // ajouter congé
     QDate d1=ui->dateEdit_2->date();
     QDate d2=ui->dateEdit_4->date();
     QString etat="";
-    bool idExists = recordExists(id_c);
+     QString idText = ui->lineEdit_5->text();
+   bool idExists = recordExists(idText);
     if (!idExists) {
         QMessageBox::critical(nullptr, tr("Error"), tr("L'ID spécifié n'existe pas."), QMessageBox::Ok);
         return;
@@ -268,24 +257,7 @@ ui->tableView_2->setModel(c.affiche());
 
 }
 
-void MainWindow::on_pushButton_2_clicked() //refuser congé
-{
-    int id_c=ui->lineEdit_5->text().toInt();
-   bool test=c.refuser(id_c);
-      if (test)
-      {
 
-       QMessageBox::information(this,"edit","validee");
-
-      }
-
-      else
-      {
-          QMessageBox::warning(this,"edit","failed");
-
-      }
- ui->tableView_2->setModel(c.affiche());
-}
 
 
 void MainWindow::on_confirmer_clicked()//confirmer congé
@@ -331,59 +303,145 @@ void MainWindow::on_aff_clicked()
 }
 
 
-void MainWindow::handleEnrollmentResult(bool success) {
-    if (success) {
-        qDebug() << "Fingerprint enrolled successfully!";
-        // Handle success scenario
-    } else {
-        qDebug() << "Failed to enroll fingerprint!";
-        // Handle failure scenario
-    }
-}
-
-void MainWindow::handleVerificationResult(bool success) {
-    if (success) {
-        qDebug() << "Fingerprint verified!";
-        // Handle success scenario
-    } else {
-        qDebug() << "Fingerprint verification failed!";
-        // Handle failure scenario
-    }
-}
-
-// Functions to trigger fingerprint operations, e.g., upon button click
-void MainWindow::enrollFingerprintButtonClicked() {
-    bool enrollmentSuccess = arduino->enrollFingerprint();
-    if (!enrollmentSuccess) {
-        qDebug() << "Failed to initiate fingerprint enrollment!";
-        // Handle failure scenario
-    }
-}
-
-void MainWindow::verifyFingerprintButtonClicked() {
-    bool verificationSuccess = arduino->verifyFingerprint();
-    if (!verificationSuccess) {
-        qDebug() << "Failed to initiate fingerprint verification!";
-        // Handle failure scenario
-    }
-}
 
 
-void MainWindow::on_tri_clicked()
+
+
+
+void MainWindow::on_tri_currentIndexChanged(const QString &arg1)
 {
-    QSqlQueryModel * model=new QSqlQueryModel();
-
-    model->setQuery("select * from EMPLOYEE order by nom ");
-
-    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
-    model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM"));
-    model->setHeaderData(2,Qt::Horizontal,QObject::tr("PRENOM"));
-    model->setHeaderData(3,Qt::Horizontal,QObject::tr("SALAIRE"));
-    model->setHeaderData(4,Qt::Horizontal,QObject::tr("DATEDEBUT"));
-    model->setHeaderData(5,Qt::Horizontal,QObject::tr("POSTE"));
-
-
-
-
-  ui->tableView->setModel(Etmp.afficher());
+    ui->tableView->setModel(Etmp.trier(arg1));
 }
+void MainWindow::stat(){
+        QSqlQuery q1,q2,q3,q4,q5,q6;
+        qreal total=0,c1=0,c2=0,c3=0,c4=0,c5=0;
+        q1.prepare("Select * from EMPLOYE");
+        if(q1.exec())
+        {
+            while (q1.next())
+            {
+                total++;
+            }
+        }
+        q2.prepare("Select * from EMPLOYE where POSTE ='Conducteur' ");
+        if(q2.exec())
+        {
+            while (q2.next())
+            {
+                c1++;
+            }
+        }
+        q3.prepare("Select * from EMPLOYE where POSTE ='Controleur technique' ");
+        if(q3.exec())
+        {
+            while (q3.next())
+            {
+                c2++;
+            }
+        }
+        q4.prepare("Select * from EMPLOYE where POSTE ='Inspecteur Qualite' ");
+        if(q4.exec())
+        {
+            while (q4.next())
+            {
+                c3++;
+            }
+        }
+        q5.prepare("Select * from EMPLOYE where POSTE ='Reducateur Technique' ");
+        if(q5.exec())
+        {
+            while (q5.next())
+            {
+                c4++;
+            }
+        }
+        q6.prepare("Select * from EMPLOYE where POSTE ='RH' ");
+        if(q6.exec())
+        {
+            while (q6.next())
+            {
+                c5++;
+            }
+        }
+        c1=(c1/total)*100;
+        c2=(c2/total)*100;
+        c3=(c3/total)*100;
+        c4=(c4/total)*100;
+        c5=(c5/total)*100;
+        QString c1_string = QString::number(c1);
+        QString c2_string = QString::number(c2);
+        QString c3_string = QString::number(c3);
+        QString c4_string = QString::number(c4);
+        QString c5_string = QString::number(c5);
+        QString infos = (" Conducteur : \t" + c1_string + "% \n Controleur technique : \t" + c2_string +"% \n Inspecteur Qualite : \t"+ c3_string + "% \n Reducateur Technique : \t"+ c4_string + "% \n RH : \t"+ c5_string + "%" );
+        QPieSeries *series = new QPieSeries();
+        series->setHoleSize(0.3);
+                series->append("Conducteur",c1);
+                series->append("Controleur technique",c2);
+                series->append("Inspecteur Qualite",c3);
+                series->append("Reducateur Technique",c4);
+                series->append("RH",c5);
+                QPieSlice *slice0 = series->slices().at(0);
+                slice0->setExploded();
+                slice0->setLabelVisible();
+                QPieSlice *slice1 = series->slices().at(1);
+                slice1->setExploded();
+                slice1->setLabelVisible();
+                QPieSlice *slice2 = series->slices().at(2);
+                slice2->setExploded();
+                slice2->setLabelVisible();
+                QPieSlice *slice3 = series->slices().at(3);
+                slice3->setExploded();
+                slice3->setLabelVisible();
+                QPieSlice *slice4 = series->slices().at(4);
+                slice4->setExploded();
+                slice4->setLabelVisible();
+                QChart *chart = new QChart();
+                 chart->addSeries(series);
+                 chart->setTitle("Les postes");
+
+                    chart->setAnimationOptions(QChart::AllAnimations);
+
+                    chart->legend()->hide();
+
+                    chartView = new QChartView(chart,ui->chartview);
+                    chartView->setRenderHint(QPainter::Antialiasing);
+                    chartView->setMinimumSize(551,291);
+
+                    chartView->show();
+
+    }
+
+void MainWindow::update_label()
+{
+    if (data.endsWith("\n") || data.endsWith("\t")) {
+        data.chop(2);
+        qDebug() << data << endl;
+
+        // Test the existence of an employe with the received code
+        QSqlQueryModel *model = Etmp.testCode(QString(data));
+
+        // Check if the model has any rows, i.e., if the code is valid
+        if (model->rowCount() > 0) {
+            // Get the first row of the model
+            QSqlRecord record = model->record(0);
+            // Get the name and surname of the employe from the model
+            QString nom = record.value("NOM").toString();
+            QString prenom = record.value("PRENOM").toString();
+            // Write the greeting message to the Arduino
+            QByteArray message = "slt " + nom.toUtf8() + " " + prenom.toUtf8() + "\n";
+            A.write_to_arduino(message);
+            data ="";
+
+        } else {
+            // Write the not authorized message to the Arduino
+            QByteArray message = "Non autorisé\n";
+            A.write_to_arduino(message);
+            data ="";
+
+        }
+    } else {
+        data += A.read_from_arduino();
+    }
+}
+

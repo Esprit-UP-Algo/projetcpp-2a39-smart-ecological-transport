@@ -29,25 +29,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    Login.cpp \
     arduino.cpp \
     conge.cpp \
     employe.cpp \
+    login.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
     pdf.cpp
 
 HEADERS += \
-    Login.h \
+    LoginWidget.h \
     arduino.h \
     conge.h \
     employe.h \
+    login.h \
         mainwindow.h \
     connection.h \
     pdf.h
 
 FORMS += \
+        LoginWidget.ui \
         login.ui \
         mainwindow.ui
 

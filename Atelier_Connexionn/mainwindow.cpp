@@ -197,6 +197,10 @@ void MainWindow::on_lineEdit_6_textChanged(const QString &arg1)
 {
      ui->tableView->setModel(Etmp.recherche(arg1));
 }
+void MainWindow::on_tableView_3_activated()
+{
+   ui->tableView->setModel(Etmp.afficher());
+}
 
 void MainWindow::on_pushButton_3_clicked() // ajouter congé
 {
@@ -320,9 +324,5 @@ void MainWindow::on_pushButton_22_clicked()
     tableView->setModel(proxyModel);
 }
 */
-
-
-
-
 
 

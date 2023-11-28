@@ -1,29 +1,37 @@
 #ifndef LOGIN_H
 #define LOGIN_H
-
-#include <QDialog>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 
-class Login : public QDialog
+
+class Login : public QWidget
 {
     Q_OBJECT
 
 public:
-    Login(QWidget *parent = nullptr);
-
-signals:
-    void loginSuccessful();
+   Login(QWidget *parent = nullptr);
+    ~Login();
 
 private slots:
     void attemptLogin();
 
 private:
-    QLineEdit *usernameLineEdit;
-    QLineEdit *passwordLineEdit;
+    QVBoxLayout *mainLayout;
+    QLabel *title;
+    QLabel *userLabel;
+    QLabel *passwordLabel; // New label for password
+    QLineEdit *userLineEdit;
+    QLineEdit *passwordLineEdit; // New line edit for password
     QPushButton *loginButton;
 
-    // You can add other necessary private members or methods here
+    void setupUI();
+    void setupConnections();
+    bool authenticateUser(const QString& username, const QString& password);
 };
 
 #endif // LOGIN_H

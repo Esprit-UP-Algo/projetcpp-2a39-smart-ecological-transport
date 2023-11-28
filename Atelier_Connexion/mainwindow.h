@@ -9,7 +9,7 @@
 #include "employe.h"
 #include "conge.h"
 #include "arduino.h"
-#include"Login.h"
+#include"LoginWidget.h"
 #include"pdf.h"
 #include <QLineEdit>
 #include <QPushButton>
@@ -39,48 +39,49 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    QChartView *chartView ;
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 
 private slots:
 
-    void enrollFingerprintButtonClicked();
-       void verifyFingerprintButtonClicked();
-       void handleEnrollmentResult(bool success);
-       void handleVerificationResult(bool success);
+void readSerialData();
 
     void on_pushButton_ajouter_clicked();
      void on_pushButton_supprimer_clicked();
       void on_pushButton_modifier_clicked();
       void on_pushButton_2_clicked();
-      void on_pushButton_clicked();
+
       void on_confirmer_clicked();
       void on_supp_clicked();
       void on_pushButton_4_clicked();
       void on_pushButton_3_clicked();
       void on_pushButton_22_clicked();
-     void on_LoginButton_Clicked();
 
-void on_pushButton_9_clicked();
 
-void on_tri_clicked();
+
+
 /*void checkLogin(const QString &username, const QString &password);*/
 
 void on_aff_clicked();
 
 void on_lineEdit_6_textChanged(const QString &arg1);
 
+void stat();
 
-
+void on_tri_currentIndexChanged(const QString &arg1);
+void update_label();
 private:
     Ui::MainWindow *ui;
-
+ QSerialPort *serial;
+ Arduino A;
+  QByteArray data;
     Employe Etmp;
     QTableView *T;
     int salaire;
     conge c;
- Arduino *arduino;
+
 
 
 

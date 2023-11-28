@@ -1,6 +1,6 @@
 #include "employe.h"
 
-Employe::Employe(int id, int salaire,  QDate datedebut, QString nom, QString prenom, QString poste)
+Employe::Employe(QString id, int salaire,  QDate datedebut, QString nom, QString prenom, QString poste)
 {
     this->id = id;
     this->salaire = salaire;
@@ -13,12 +13,12 @@ Employe::Employe(int id, int salaire,  QDate datedebut, QString nom, QString pre
 
     bool Employe::ajouter()
     {
-        QString id_string = QString::number(id);
+
         QString salaire_string = QString::number(salaire);
         QSqlQuery query;
             query.prepare("INSERT INTO EMPLOYE (ID,  NOM, PRENOM,SALAIRE, DATEDEBUT, POSTE) "
                           "VALUES (:ID, :NOM, :PRENOM, :SALAIRE, :DATEDEBUT, :POSTE)");
-            query.bindValue(":ID", id_string);
+            query.bindValue(":ID", id);
             query.bindValue(":NOM", nom);
             query.bindValue(":PRENOM", prenom);
             query.bindValue(":SALAIRE", salaire_string);
@@ -27,35 +27,35 @@ Employe::Employe(int id, int salaire,  QDate datedebut, QString nom, QString pre
             return query.exec();
 
     }
-    bool Employe::supprimer(int id)
+    bool Employe::supprimer(QString id)
     {
         QSqlQuery query;
-        QString id_string = QString::number(id);
+
         query.prepare("DELETE FROM EMPLOYE WHERE ID=:ID");
-        query.bindValue(":ID",id_string);
+        query.bindValue(":ID",id);
         return query.exec();
     }
 
-    QSqlQueryModel * Employe::afficher()
-    {
-        QSqlQueryModel * model = new QSqlQueryModel();
-        model->setQuery("Select * from employe");
-        model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
-        model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM"));
-        model->setHeaderData(2,Qt::Horizontal,QObject::tr("PRENOM"));
-        model->setHeaderData(3,Qt::Horizontal,QObject::tr("SALAIRE"));
-        model->setHeaderData(4,Qt::Horizontal,QObject::tr("DATEDEBUT"));
-        model->setHeaderData(5,Qt::Horizontal,QObject::tr("POSTE"));
+    QSqlQueryModel* Employe::afficher() {
+        QSqlQueryModel* model = new QSqlQueryModel();
+        model->setQuery("SELECT ID,NOM,PRENOM,SALAIRE,DATEDEBUT,POSTE  FROM employe");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("SALAIRE"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATEDEBUT"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("POSTE"));
         return model;
     }
+
     bool Employe::modifier()
     {
-        QString id_string = QString::number(id);
+
         QString salaire_string = QString::number(salaire);
         QSqlQuery query;
             query.prepare("UPDATE EMPLOYE SET ID= :ID, NOM= :NOM, PRENOM= :PRENOM, SALAIRE= :SALAIRE, DATEDEBUT= :DATEDEBUT, POSTE= :POSTE "
-                          "WHERE ID = '"+id_string+"' ");
-            query.bindValue(":ID", id_string);
+                          "WHERE ID = '"+id+"' ");
+            query.bindValue(":ID", id);
             query.bindValue(":NOM", nom);
             query.bindValue(":PRENOM", prenom);
             query.bindValue(":SALAIRE", salaire_string);
@@ -71,20 +71,42 @@ Employe::Employe(int id, int salaire,  QDate datedebut, QString nom, QString pre
         return model;
     }
 
-    QSqlQueryModel* Employe::trier_nom()
+    QSqlQueryModel * Employe::trier(QString test)
     {
-
-            QSqlQueryModel * model=new QSqlQueryModel();
-
-            model->setQuery("select * from EMPLOYEE order by nom ");
-
-            model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID"));
-            model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM"));
-            model->setHeaderData(2,Qt::Horizontal,QObject::tr("PRENOM"));
-            model->setHeaderData(3,Qt::Horizontal,QObject::tr("SALAIRE"));
-            model->setHeaderData(4,Qt::Horizontal,QObject::tr("DATEDEBUT"));
-            model->setHeaderData(5,Qt::Horizontal,QObject::tr("POSTE"));
-
+        QSqlQueryModel * model=new QSqlQueryModel();
+        if(test == "par défaut"){
+            model->setQuery("SELECT * from EMPLOYE");
+        }
+        else if(test =="par NOM")
+        {
+            model->setQuery("SELECT * from EMPLOYE order by NOM asc ");
+        }
+        else if(test =="par PRENOM")
+        {
+            model->setQuery("SELECT * from EMPLOYE order by PRENOM desc ");
+        }
+        else if(test =="par SALAIRE")
+        {
+            model->setQuery("SELECT * from EMPLOYE order by SALAIRE asc ");
+        }
+        else if(test =="par POSTE")
+        {
+            model->setQuery("SELECT * from EMPLOYE order by POSTE asc ");
+        }else if(test =="par ID")
+        {
+            model->setQuery("SELECT * from EMPLOYE order by ID asc ");
+        }
+        return model;
+    }
+    QSqlQueryModel * Employe::testCode(QString code)
+    {
+        QSqlQueryModel * model = new QSqlQueryModel();
+        model->setQuery("Select NOM,PRENOM from agent where pass ='"+code+"'");
+        model->setHeaderData(0,Qt::Horizontal,QObject::tr("NOM"));
+        model->setHeaderData(1,Qt::Horizontal,QObject::tr("PRENOM"));
+        model->setHeaderData(2,Qt::Horizontal,QObject::tr("PASS"));
 
         return model;
     }
+
+

@@ -146,12 +146,3 @@ QStandardItemModel* conge::affiche() {
     return model;
 }
 
-bool conge::refuser(int id_c)
-{
-    QSqlQuery query;
-    QString etat="refuser";
-       query.prepare("UPDATE CONGE SET  ETAT=:ETAT WHERE ID_C=:ID_C" );
-       query.bindValue(":ID_c",id_c);
-       query.bindValue(":ETAT",etat);
-       return query.exec();
-}

@@ -17,14 +17,14 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>250</x>
       <y>40</y>
       <width>901</width>
       <height>511</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="AJOUTE">
      <attribute name="title">
@@ -413,19 +413,6 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="recherche">
-      <property name="geometry">
-       <rect>
-        <x>460</x>
-        <y>400</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Recherche</string>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="lineEdit_6">
       <property name="geometry">
        <rect>
@@ -436,17 +423,14 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="tri">
+     <widget class="QComboBox" name="tri">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>150</x>
         <y>410</y>
-        <width>93</width>
-        <height>28</height>
+        <width>151</width>
+        <height>22</height>
        </rect>
-      </property>
-      <property name="text">
-       <string>TRI</string>
       </property>
      </widget>
     </widget>
@@ -706,26 +690,13 @@
      <attribute name="title">
       <string>stats</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton_7">
+     <widget class="QLabel" name="chartview">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>440</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>10</y>
-        <width>701</width>
-        <height>411</height>
+        <x>90</x>
+        <y>40</y>
+        <width>651</width>
+        <height>341</height>
        </rect>
       </property>
       <property name="text">
@@ -737,23 +708,39 @@
      <attribute name="title">
       <string>Page</string>
      </attribute>
+     <widget class="QTableView" name="tableView_4">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>31</y>
+        <width>721</width>
+        <height>381</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>40</y>
-      <width>231</width>
-      <height>531</height>
+      <x>80</x>
+      <y>60</y>
+      <width>169</width>
+      <height>491</height>
      </rect>
     </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>../../../OneDrive/Bureau/Capture d’écran 2023-11-01 174534.png</pixmap>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>../../../OneDrive/Bureau/login.png</pixmap>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

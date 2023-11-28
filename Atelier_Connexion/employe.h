@@ -11,17 +11,17 @@ class Employe
 {
 public:
     Employe(){};
-    Employe(int, int, QDate, QString, QString, QString);
+    Employe(QString, int, QDate, QString, QString, QString);
 
 
-    int getID(){return id;}
+   QString getID(){return id;}
    int getsalaire();
      QDate getDatedebut();
     QString getnom(){return nom;}
     QString getprenom(){return prenom;}
     QString getposte();
 
-    void setID(int id){this->id=id;}
+    void setID(QString);
     void setsalaire(int);
 
     void setdatedebut(QDate);
@@ -29,18 +29,17 @@ public:
     void setprenom(QString p){prenom=p;}
     void setposte(QString);
     bool ajouter();
-    bool supprimer(int);
-
-
- QSqlQueryModel* trier_nom();
+    bool supprimer(QString);
+   QSqlQueryModel * testCode(QString code);
+QSqlQueryModel * trier(QString );
 
     QSqlQueryModel * afficher();
     bool modifier();
     QSqlQueryModel *recherche (QString);
 private:
-    int id, salaire;
+    int  salaire;
     QDate datedebut;
-    QString nom, prenom,poste;
+    QString id,nom, prenom,poste;
 
 
 };

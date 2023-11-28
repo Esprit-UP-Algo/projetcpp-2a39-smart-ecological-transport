@@ -59,9 +59,15 @@ void on_pushButton_7_clicked();
 
 
 
-
+void on_tableView_3_activated();
 
 void on_lineEdit_6_textChanged(const QString &arg1);
+
+void on_pushButton_clicked(bool checked);
+
+void on_pushButton_windowIconTextChanged(const QString &iconText);
+
+void on_tableView_3_activated(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;

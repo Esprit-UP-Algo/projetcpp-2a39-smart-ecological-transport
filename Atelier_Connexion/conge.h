@@ -24,7 +24,7 @@ public:
     bool supprimer(int);
     bool modifier(int);
        QStandardItemModel  * affiche();
-    bool refuser(int);
+
 private:
  int id_c;
  QDate date_debut, date_retour;

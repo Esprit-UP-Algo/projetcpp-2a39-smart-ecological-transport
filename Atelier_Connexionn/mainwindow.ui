@@ -17,14 +17,14 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>270</x>
       <y>40</y>
       <width>731</width>
       <height>511</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="AJOUTE">
      <attribute name="title">
@@ -574,13 +574,39 @@
         <string>Date retour</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>170</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Annuler</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>170</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>ajouter</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QTableView" name="tableView_2">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>280</x>
         <y>10</y>
-        <width>341</width>
+        <width>421</width>
         <height>261</height>
        </rect>
       </property>
@@ -588,8 +614,8 @@
      <widget class="QPushButton" name="confirmer">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>330</y>
+        <x>30</x>
+        <y>250</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -601,8 +627,8 @@
      <widget class="QPushButton" name="pushButton_2">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>330</y>
+        <x>150</x>
+        <y>250</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -614,8 +640,8 @@
      <widget class="QPushButton" name="pushButton_22">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>410</y>
+        <x>150</x>
+        <y>300</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -624,24 +650,11 @@
        <string>imprimer</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>280</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>ajouter</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="supp">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>390</y>
+        <x>30</x>
+        <y>300</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -650,17 +663,14 @@
        <string>supprimer</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QTableView" name="tableView_3">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>310</x>
         <y>280</y>
-        <width>93</width>
-        <height>28</height>
+        <width>331</width>
+        <height>192</height>
        </rect>
-      </property>
-      <property name="text">
-       <string>retour</string>
       </property>
      </widget>
     </widget>
