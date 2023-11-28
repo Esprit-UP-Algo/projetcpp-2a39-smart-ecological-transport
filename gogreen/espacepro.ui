@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>espacepro</class>
+ <widget class="QWidget" name="espacepro">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>987</width>
+    <height>571</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>181</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>50</y>
+     <width>241</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>BIENVENUE!</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>140</y>
+     <width>141</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>GESTION CLIENTS</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>140</y>
+     <width>141</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>GESTION DE RETOUR</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>330</y>
+     <width>151</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>RESERVATIONS</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>140</y>
+     <width>151</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>GESTION EMPLOYES</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>330</y>
+     <width>151</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>GESTION VEHICULES</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>951</width>
+     <height>531</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>l</string>
+   </property>
+  </widget>
+  <zorder>label_8</zorder>
+  <zorder>label_4</zorder>
+  <zorder>label_2</zorder>
+  <zorder>pushButton_2</zorder>
+  <zorder>pushButton_4</zorder>
+  <zorder>pushButton_5</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>pushButton_3</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
