@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>back.png</file>
+        <file>f.png</file>
+        <file>filter.png</file>
+        <file>h.png</file>
+        <file>historique.png</file>
+        <file>l.png</file>
+        <file>m.png</file>
+        <file>s.png</file>
+        <file>searche.png</file>
+        <file>stats.png</file>
+        <file>tab.png</file>
+    </qresource>
+</RCC>
