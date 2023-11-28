@@ -3,8 +3,12 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
-#include<QMessageBox>
-#include<QDebug>
+#include<QBuffer>
+#include <QImage>
+#include<QFileDialog>
+#include <QDebug>
+#include <QStyledItemDelegate>
+
 
 class Connection
 {
