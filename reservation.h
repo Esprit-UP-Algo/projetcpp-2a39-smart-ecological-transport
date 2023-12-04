@@ -1,0 +1,57 @@
+#ifndef RESERVATION_H
+#define RESERVATION_H
+#include<QSqlQuery>
+#include<QSqlQueryModel>
+#include <QString>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QSystemTrayIcon>
+#include<QMessageBox>
+
+
+class reservation
+{
+
+
+public:
+    reservation();
+    reservation(QString,QString,int,QString,int,QString,QString,QString);
+
+    QString getnom();
+    QString getprenom();
+    int getnum();
+    QString getdatedebut();
+    int getcin();
+    QString getemail();
+    QString getdatefin();
+    QString getdurer();
+
+
+
+
+
+    void setnom(QString);
+    void setprenom(QString);
+    void setnum(int);
+    void setdatedebut(QString);
+    void setcin(int);
+    void setemail(QString);
+    void setdatefin(QString);
+    void setdurer(QString);
+    bool ajouter();
+    QSqlQueryModel * affichier();
+    bool supprimer(int num);
+    bool modifier(QString nom, QString prenom,int num,QString datedebut,int cin,QString email,QString datefin,QString durer);
+    QSqlQueryModel* recherchecin(int cin );
+    QSqlQueryModel* sortname();
+    void exportpdf(QString s);
+     bool retour(QString datedebut,QString datefin,QString durer);
+
+
+private:
+    int num,cin;
+    QString nom,prenom,datedebut,email,datefin,durer;
+
+};
+
+#endif // RESERVATION_H
