@@ -15,6 +15,7 @@ Vhicule::Vhicule()
     puissance = "";
     type_de_recharge = "";
     reference = "";
+
 }
 
 Vhicule::Vhicule(QString immatricule, QString marque, QString modele, QString puissance, QString type_de_recharge ,  QString reference)
@@ -65,19 +66,16 @@ bool Vhicule::ajouter()
     query.bindValue(":TYPE_CHARGE", type_de_recharge);
     query.bindValue(":REFERENCE", reference);
 
-    QString message = "Immatricule: " + immatricule + "\nMarque: " + marque + "\nModèle: " + modele + "\nPuissance: " + puissance + "\nType de recharge: " + type_de_recharge + "\nRéférence: " + reference + "\n";
-    QMessageBox::information(nullptr, QObject::tr("Valeurs à ajouter"), message, QMessageBox::Ok);
+
     if (query.exec()) {
-        QSqlQuery query2;
-        query2.prepare("INSERT INTO HISTORIQUE (IMMATRICULE, MARQUE, PUISSANCE, TYPE_CHARGE, REFERENCE, MODELE) "
-                      "VALUES (:IMMATRICULE, :MARQUE, :PUISSANCE, :TYPE_CHARGE, :REFERENCE, :MODELE)");
-        query2.bindValue(":IMMATRICULE", immatricule); // Use query2
-        query2.bindValue(":MARQUE", marque);
-        query2.bindValue(":PUISSANCE", puissance);
-        query2.bindValue(":TYPE_CHARGE", type_de_recharge);
-        query2.bindValue(":REFERENCE", reference);
-        query2.bindValue(":MODELE", modele); // Corrected here
-        query2.exec();
+        QSqlQuery query;
+
+                       historique h("me","ajouter une matrcuile de id : "+immatricule,QDateTime::currentDateTime());
+                query.prepare("insert into historique (USERNAME,ACTION,DATEH)""values(:USERNAME,:ACTION,:DATEH)");
+                query.bindValue(":USERNAME", h.getuser());
+                query.bindValue(":ACTION", h.getaction());
+                query.bindValue(":DATEH", h.getdateh());
+                query.exec();
 
         return true;
     } else {
@@ -124,6 +122,12 @@ bool Vhicule::supprimer(QString matricule)
     query.bindValue(":IMMATRICULE", matricule);
 
     if (query.exec()) {
+        historique h("me","supprimer une matrcuile de id : "+immatricule,QDateTime::currentDateTime());
+ query.prepare("insert into historique (USERNAME,ACTION,DATEH)""values(:USERNAME,:ACTION,:DATEH)");
+ query.bindValue(":USERNAME", h.getuser());
+ query.bindValue(":ACTION", h.getaction());
+ query.bindValue(":DATEH", h.getdateh());
+ query.exec();
         return true;
     } else {
         return false;
@@ -158,6 +162,12 @@ bool Vhicule::modifier(QString immatricule)
                                  QMessageBox::Cancel);
 
     if (query.exec()) {
+        historique h("me","modifier une matrcuile de id : "+immatricule,QDateTime::currentDateTime());
+ query.prepare("insert into historique (USERNAME,ACTION,DATEH)""values(:USERNAME,:ACTION,:DATEH)");
+ query.bindValue(":USERNAME", h.getuser());
+ query.bindValue(":ACTION", h.getaction());
+ query.bindValue(":DATEH", h.getdateh());
+ query.exec();
         return true;
     } else {
         qDebug() << "Erreur SQL : " << query.lastError().text();

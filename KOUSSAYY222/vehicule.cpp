@@ -34,6 +34,7 @@ Vehicule::Vehicule(QWidget *parent) :
                 }
                 ui->tab_v->setModel(V.afiicher());
                 ui->tab_v_3->setModel(V.afiicherh());
+                ui->tab_v_3->setModel(h.afficher());
 
 }
 
@@ -91,6 +92,8 @@ void Vehicule::on_ajout_clicked()
             QString vehicleInfo = QString("%1, %2, %3, %4, %5, %6")
                                       .arg(immatricule, marque, modele, puissance, type_de_recharge, reference);
             saveToFile("vehicle_history.txt", vehicleInfo);
+            ui->tab_v_3->setModel(h.afficher());
+
         } else {
             // En cas d'échec, affichez un message d'erreur.
             QMessageBox::critical(nullptr, QObject::tr("Erreur"),
@@ -166,6 +169,7 @@ void Vehicule::on_supp_clicked()
     if (test)
     {
         statistiques();
+        ui->tab_v_3->setModel(h.afficher());
 
         // Si la suppression est réussie, affichez un message de succès.
         QMessageBox::information(nullptr, QObject::tr("Succès"),
@@ -222,6 +226,7 @@ void Vehicule::on_modifier_clicked() {
 
         if (test) {
             statistiques();
+            ui->tab_v_3->setModel(h.afficher());
 
             // Si la modification est réussi, affichez un message de succès.
             QMessageBox::information(nullptr, QObject::tr("Succès"),
@@ -236,7 +241,7 @@ void Vehicule::on_modifier_clicked() {
 //             showNotification("Database Updated!");
             notification("Database Updated!");
             ui->tab_v->setModel(V.afiicher());
-            ui->tab_v_3->setModel(V.afiicherh());
+            ui->tab_v_3->setModel(h.afficher());
 
         } else {
             // En cas d'échec, affichez un message d'erreur.

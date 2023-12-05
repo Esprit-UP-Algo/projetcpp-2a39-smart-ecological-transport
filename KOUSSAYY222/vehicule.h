@@ -64,6 +64,8 @@ private:
     QByteArray data; // variable contenant les données reçues
 QString ref;
        Arduino A;
+       historique h;
+
 };
 
 #endif // VEHICULE_H

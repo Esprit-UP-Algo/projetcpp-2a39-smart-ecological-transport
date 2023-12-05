@@ -33,7 +33,8 @@ SOURCES += \
     popup.cpp \
     vehicule.cpp \
     vhicule.cpp \
-    arduino.cpp
+    arduino.cpp \
+    historique.cpp
 
 
 
@@ -43,7 +44,8 @@ HEADERS += \
     popup.h \
     vehicule.h \
     vhicule.h \
-    arduino.h
+    arduino.h \
+    historique.h
 
 
 FORMS += \

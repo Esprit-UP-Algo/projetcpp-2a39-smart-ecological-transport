@@ -1,8 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "historique.h"
 #include <QMainWindow>
-
 namespace Ui {
 class MainWindow;
 }
